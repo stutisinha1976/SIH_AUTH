@@ -21,7 +21,7 @@ function SignInwithGoogle() {
         });
         window.location.href = "/profile";
       }
-    });
+    }).catch(() => {console.log("sorry")});
   }
   return (
     <div>

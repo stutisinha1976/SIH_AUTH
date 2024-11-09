@@ -43,10 +43,10 @@ function Profile() {
             />
           </div>
           <h3>Welcome {userDetails.firstName} 🙏🙏</h3>
-          <div>
-            <p>Email: {userDetails.email}</p>
-            <p>First Name: {userDetails.firstName}</p>
-            {/* <p>Last Name: {userDetails.lastName}</p> */}
+          <div id="profile_data">
+            Email: {userDetails.email}<br/>
+            First Name: {userDetails.firstName}<br/>
+            Post: {userDetails.position}<br/>
           </div>
           <button className="btn btn-primary" onClick={handleLogout}>
             Logout
