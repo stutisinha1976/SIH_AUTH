@@ -1,17 +1,31 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword,  } from "firebase/auth";
 import React, { useState } from "react";
-import { auth } from "./firebase";
+import { auth, db } from "./firebase";
 import { toast } from "react-toastify";
+import { doc, getDoc } from "firebase/firestore";
 import SignInwithGoogle from "./signInWIthGoogle";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [post,setpost]=useState("");
+  const [userDetails, setUserDetails] = useState(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Retrieve user's department from Firestore
+      const userDoc = await getDoc(doc(db, 'Users', user.uid));
+      if (!userDoc.exists()){
+        throw new Error("User Doesn't Exists!!");
+      }
+      await setUserDetails(userDoc.data());
+      if (userDetails.position !== post){
+        throw new Error("User doesn't have post: "+post);
+      } 
+
       console.log("User logged in Successfully");
       window.location.href = "/profile";
       toast.success("User logged in Successfully", {
