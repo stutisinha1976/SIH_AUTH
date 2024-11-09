@@ -21,8 +21,8 @@ function Login() {
       if (!userDoc.exists()){
         throw new Error("User Doesn't Exists!!");
       }
-      setUserDetails(userDoc.data());
-      if (userDetails.position!=post){
+      await setUserDetails(userDoc.data());
+      if (userDetails.position !== post){
         throw new Error("User doesn't have post: "+post);
       } 
 
