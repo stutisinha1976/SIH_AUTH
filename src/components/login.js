@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { auth, db } from "./firebase";
 import { toast } from "react-toastify";
 import { doc, getDoc } from "firebase/firestore";
-import SignInwithGoogle from "./signInWIthGoogle";
+//import SignInwithGoogle from "./signInWIthGoogle";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -73,8 +73,8 @@ function Login() {
     defaultValue=""
   >
     <option value="" disabled>Select a post</option>
-    <option value="Project Manager">Project Manager</option>
-    <option value="Worker">Worker</option>
+    <option value="Admin">CMPDI Admin</option>
+    <option value="investigator">Project Investigator</option>
   </select>
 </div>
 
@@ -87,7 +87,7 @@ function Login() {
       <p className="forgot-password text-right">
         New user <a href="/register">Register Here</a>
       </p>
-      <SignInwithGoogle/>
+      {/* <SignInwithGoogle/> */}
     </form>
   );
 }
